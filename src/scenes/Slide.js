@@ -118,6 +118,8 @@ export default class Slide extends Component<PropsType, StateType> {
           key={vContent[0].key}
           style={styles.scrollVertical}
           pagingEnabled={true}
+          bounces={false}
+          showsVerticalScrollIndicator={false}
         >
           {vContent}
         </ScrollView>,
@@ -129,6 +131,8 @@ export default class Slide extends Component<PropsType, StateType> {
           style={styles.scrollHorizontal}
           horizontal={true}
           pagingEnabled={true}
+          bounces={false}
+          showsHorizontalScrollIndicator={false}
         >
           {hContent}
         </ScrollView>
