@@ -11,6 +11,7 @@ import {
   Dimensions,
   Text,
   ScrollView,
+  StatusBar,
   StyleSheet,
   View,
 } from 'react-native';
@@ -20,6 +21,14 @@ const dimensions = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+  },
+  contentBody: {
+    flex: 8,
+    justifyContent: 'center',
+  },
+  contentTitle: {
     flex: 1,
     justifyContent: 'center',
   },
@@ -102,14 +111,23 @@ export default class Slide extends Component<PropsType, StateType> {
     pages.forEach((vPages) => {
       const vContent = [];
       vPages.forEach((page) => {
+        const contentTitle = page.shift();
+        const contentBody = page;
         vContent.push(
           <View
             key={page[0]}
             style={styles.scrollContent}
           >
-            <Text>
-              {page}
-            </Text>
+            <View style={styles.contentTitle}>
+              <Text>
+                {contentTitle}
+              </Text>
+            </View>
+            <View style={styles.contentBody}>
+              <Text>
+                {contentBody}
+              </Text>
+            </View>
           </View>,
         );
       });
@@ -143,6 +161,7 @@ export default class Slide extends Component<PropsType, StateType> {
   render(): React.DOM {
     return (
       <Fragment>
+        <StatusBar hidden={true} />
         <View style={styles.container}>
           {this.state.scrollContent}
         </View>
