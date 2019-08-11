@@ -1,7 +1,4 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
  * @format
  * @flow
  */
@@ -43,24 +40,15 @@ type PropsType = {
   navigation: Object,
 };
 
-export default class App extends Component<PropsType> {
-  transition = (destination: string) => {
-    this.props.navigation.navigate(destination);
-  }
-
+export default class Slide extends Component<PropsType> {
   render(): React.DOM {
     return (
       <Fragment>
         <View style={styles.container}>
           <View>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => { this.transition(Scenes.SlidePre); }}
-            >
-              <Text>
-                スライド
-              </Text>
-            </TouchableOpacity>
+            <Text>
+              スライド予定
+            </Text>
           </View>
         </View>
       </Fragment>

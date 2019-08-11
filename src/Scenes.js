@@ -9,4 +9,8 @@ export default class Scenes {
   static get Slide(): string {
     return 'Slide';
   }
+
+  static get SlidePre(): string {
+    return 'SlidePre';
+  }
 }

@@ -1,7 +1,4 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
  * @format
  * @flow
  */
@@ -43,7 +40,7 @@ type PropsType = {
   navigation: Object,
 };
 
-export default class App extends Component<PropsType> {
+export default class SlidePre extends Component<PropsType> {
   transition = (destination: string) => {
     this.props.navigation.navigate(destination);
   }
@@ -55,10 +52,10 @@ export default class App extends Component<PropsType> {
           <View>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => { this.transition(Scenes.SlidePre); }}
+              onPress={() => { this.transition(Scenes.Slide); }}
             >
               <Text>
-                スライド
+                GO
               </Text>
             </TouchableOpacity>
           </View>

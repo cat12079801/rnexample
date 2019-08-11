@@ -10,6 +10,8 @@ import {
 } from 'react-navigation';
 
 import App from './src/scenes/App';
+import Slide from './src/scenes/Slide';
+import SlidePre from './src/scenes/SlidePre';
 import { name as appName } from './app.json';
 
 const mainStackNavigator = createStackNavigator({
@@ -17,6 +19,18 @@ const mainStackNavigator = createStackNavigator({
     screen: App,
     navigationOptions: {
       gesturesEnabled: false,
+      header: null,
+    },
+  },
+  Slide: {
+    screen: Slide,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  SlidePre: {
+    screen: SlidePre,
+    navigationOptions: {
       header: null,
     },
   },
