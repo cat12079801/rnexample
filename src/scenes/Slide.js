@@ -20,6 +20,8 @@ import {
 import Indicator from 'rnexample/src/Components/Indicator';
 
 const dimensions = Dimensions.get('window');
+const windowHeight = Math.min(dimensions.height, dimensions.width);
+const windowWidth = Math.max(dimensions.height, dimensions.width);
 
 const styles = StyleSheet.create({
   container: {
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 4,
     justifyContent: 'center',
     paddingHorizontal: 50,
-    width: dimensions.width,
+    width: windowWidth,
   },
   contentBodyImage: {
     resizeMode: 'contain',
@@ -54,9 +56,9 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     alignItems: 'center',
-    height: dimensions.height,
+    height: windowHeight,
     justifyContent: 'center',
-    width: dimensions.width,
+    width: windowWidth,
   },
   scrollHorizontal: {
   },
