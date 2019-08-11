@@ -27,13 +27,23 @@ const styles = StyleSheet.create({
   contentBody: {
     flex: 4,
     justifyContent: 'center',
+    paddingHorizontal: 50,
+    width: dimensions.width,
+  },
+  contentBodyTextList: {
+    fontSize: 24,
+    textAlign: 'left',
+  },
+  contentBodyTextNormal: {
+    fontSize: 24,
+    textAlign: 'center',
   },
   contentTitle: {
     flex: 1,
     justifyContent: 'center',
   },
   contentTitleText: {
-    fontSize: 32,
+    fontSize: 64,
   },
   scrollContent: {
     alignItems: 'center',
@@ -61,10 +71,12 @@ const tmpmd = `# タイトル
 
 ## お品書き
 
-1. ほげほげ1
-1. ほげほげ2
-1. ほげほげ3
-1. ほげほげ4
+1. あいうおおおお
+2. xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+3. ほ
+4. ほげほげ4
+
+こんな感じで箇条書きもできます
 
 ## ほげほげ1
 
@@ -88,7 +100,7 @@ export default class Slide extends Component<PropsType, StateType> {
   }
 
   componentDidMount() {
-    const lines = tmpmd.split(/\n/g).filter((x) => { return x !== ''; });
+    const lines = tmpmd.split(/\n/g);
     const pages = [];
     let x = 0;
     let y = 0;
@@ -115,7 +127,34 @@ export default class Slide extends Component<PropsType, StateType> {
       const vContent = [];
       vPages.forEach((page) => {
         const contentTitle = page.shift();
-        const contentBody = page;
+        const contentBody = [];
+
+        if (page[0] === '') {
+          page.shift();
+        }
+
+        page.forEach((line) => {
+          const key = String(Math.random());
+          if (/^(\d+\. |- )/.test(line)) {
+            contentBody.push(
+              <Text
+                key={key}
+                style={styles.contentBodyTextList}
+              >
+                {line}
+              </Text>,
+            );
+          } else {
+            contentBody.push(
+              <Text
+                key={key}
+                style={styles.contentBodyTextNormal}
+              >
+                {line}
+              </Text>,
+            );
+          }
+        });
         vContent.push(
           <View
             key={page[0]}
@@ -127,9 +166,7 @@ export default class Slide extends Component<PropsType, StateType> {
               </Text>
             </View>
             <View style={styles.contentBody}>
-              <Text>
-                {contentBody}
-              </Text>
+              {contentBody}
             </View>
           </View>,
         );
