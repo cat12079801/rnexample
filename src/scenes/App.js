@@ -13,13 +13,13 @@ import React, {
 import {
   Text,
   StyleSheet,
-  StatusBar,
   View,
 } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
   },
 });
@@ -32,7 +32,6 @@ export default class App extends Component<PropsType> {
   render(): React.DOM {
     return (
       <Fragment>
-        <StatusBar barStyle="dark-content" />
         <View style={styles.container}>
           <Text>
             hello world!
