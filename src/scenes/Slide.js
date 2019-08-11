@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import {
   Dimensions,
+  Image,
   Text,
   ScrollView,
   StatusBar,
@@ -29,6 +30,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 50,
     width: dimensions.width,
+  },
+  contentBodyImage: {
+    resizeMode: 'contain',
+    width: '100%',
   },
   contentBodyTextList: {
     fontSize: 24,
@@ -80,6 +85,7 @@ const tmpmd = `# タイトル
 
 ## ほげほげ1
 
+![200](http://i.imgur.com/Jjwsc.jpg)
 にゃーん
 
 ### 縦スワイプした
@@ -135,7 +141,22 @@ export default class Slide extends Component<PropsType, StateType> {
 
         page.forEach((line) => {
           const key = String(Math.random());
-          if (/^(\d+\. |- )/.test(line)) {
+          if (/^!\[.*\]\(.*\)$/.test(line)) {
+            const height = line.replace(/^!\[/, '').replace(/\]\(.*\)$/, '');
+            const uri = line.replace(/^!\[.*\]\(/, '').replace(/\)$/, '');
+            contentBody.push(
+              <Image
+                key={key}
+                style={[
+                  styles.contentBodyImage,
+                  {
+                    height: Number(height),
+                  },
+                ]}
+                source={{ uri: uri }}
+              />,
+            );
+          } else if (/^(\d+\. |- )/.test(line)) {
             contentBody.push(
               <Text
                 key={key}
