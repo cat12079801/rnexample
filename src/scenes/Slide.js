@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
 type PropsType = {
   // navigation: Object,
 };
+type StateType = {
+  scrollContent: Object,
+};
 
 const tmpmd = `# タイトル
 
@@ -64,11 +67,16 @@ const tmpmd = `# タイトル
 こうなってくれ
 `;
 
-export default class Slide extends Component<PropsType> {
+export default class Slide extends Component<PropsType, StateType> {
+  constructor(props: PropsType) {
+    super(props);
+    this.state = {
+      scrollContent: null,
+    };
+  }
+
   componentDidMount() {
-    console.log(tmpmd);
     const lines = tmpmd.split(/\n/g);
-    console.log(lines);
     const pages = [];
     let x = 0;
     let y = 0;
@@ -88,49 +96,51 @@ export default class Slide extends Component<PropsType> {
       const pushLine = line.replace(/^#+ /, '');
       pages[x][y].push(pushLine);
     });
-    console.log(pages);
+
+    const hContent = [];
+
+    pages.forEach((vPages) => {
+      const vContent = [];
+      vPages.forEach((page) => {
+        vContent.push(
+          <View
+            key={page[0]}
+            style={styles.scrollContent}
+          >
+            <Text>
+              {page}
+            </Text>
+          </View>,
+        );
+      });
+      hContent.push(
+        <ScrollView
+          key={vContent[0].key}
+          style={styles.scrollVertical}
+          pagingEnabled={true}
+        >
+          {vContent}
+        </ScrollView>,
+      );
+    });
+    this.setState({
+      scrollContent: (
+        <ScrollView
+          style={styles.scrollHorizontal}
+          horizontal={true}
+          pagingEnabled={true}
+        >
+          {hContent}
+        </ScrollView>
+      ),
+    });
   }
 
   render(): React.DOM {
     return (
       <Fragment>
         <View style={styles.container}>
-          <ScrollView
-            style={styles.scrollHorizontal}
-            horizontal={true}
-            pagingEnabled={true}
-          >
-            <ScrollView
-              style={styles.scrollVertical}
-              pagingEnabled={true}
-            >
-              <View style={styles.scrollContent}>
-                <Text>
-                  ページ1-1
-                </Text>
-              </View>
-              <View style={styles.scrollContent}>
-                <Text>
-                  ページ1-2
-                </Text>
-              </View>
-            </ScrollView>
-            <ScrollView
-              style={styles.scrollVertical}
-              pagingEnabled={true}
-            >
-              <View style={styles.scrollContent}>
-                <Text>
-                  ページ2-1
-                </Text>
-              </View>
-              <View style={styles.scrollContent}>
-                <Text>
-                  ページ2-2
-                </Text>
-              </View>
-            </ScrollView>
-          </ScrollView>
+          {this.state.scrollContent}
         </View>
       </Fragment>
     );
