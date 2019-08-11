@@ -42,7 +42,59 @@ type PropsType = {
   navigation: Object,
 };
 
+const tmpmd = `# タイトル
+
+2019/08/11
+中村槙吾
+
+## お品書き
+
+1. ほげほげ1
+1. ほげほげ2
+1. ほげほげ3
+1. ほげほげ4
+
+## ほげほげ1
+
+にゃーん
+
+### 縦スワイプした
+
+こうなる
+
+### もう一つ縦スワイプ
+
+こうなってくれ
+`;
+
 export default class Slide extends Component<PropsType> {
+  componentDidMount() {
+    console.log(tmpmd);
+    const lines = tmpmd.split(/\n/g);
+    console.log(lines);
+    const pages = [];
+    let x = 0;
+    let y = 0;
+    lines.forEach((line) => {
+      if (/^# /.test(line)) {
+        x = 0;
+        y = 0;
+        pages.push([[]]);
+      } else if (/^## /.test(line)) {
+        x++;
+        y = 0;
+        pages.push([[]]);
+      } else if (/^### /.test(line)) {
+        y++;
+        pages[x].push([]);
+      } else {
+      }
+      const pushLine = line.replace(/^#+ /, '');
+      pages[x][y].push(pushLine);
+    });
+    console.log(pages);
+  }
+
   render(): React.DOM {
     return (
       <Fragment>
