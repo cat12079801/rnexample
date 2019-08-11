@@ -17,6 +17,8 @@ import {
   View,
 } from 'react-native';
 
+import Indicator from 'rnexample/src/Components/Indicator';
+
 const dimensions = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -129,9 +131,9 @@ export default class Slide extends Component<PropsType, StateType> {
 
     const hContent = [];
 
-    pages.forEach((vPages) => {
+    pages.forEach((vPages, ix) => {
       const vContent = [];
-      vPages.forEach((page) => {
+      vPages.forEach((page, iy) => {
         const contentTitle = page.shift();
         const contentBody = [];
 
@@ -189,6 +191,12 @@ export default class Slide extends Component<PropsType, StateType> {
             <View style={styles.contentBody}>
               {contentBody}
             </View>
+            <Indicator
+              activeTop={iy !== 0}
+              activeLeft={ix !== 0}
+              activeRight={ix !== x}
+              activeBottom={iy !== vPages.length - 1}
+            />
           </View>,
         );
       });
