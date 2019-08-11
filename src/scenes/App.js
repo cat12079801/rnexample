@@ -17,6 +17,8 @@ import {
   View,
 } from 'react-native';
 
+import Scenes from 'rnexample/src/Scenes';
+
 const color = {
   button: '#92f0d7',
 };
@@ -53,7 +55,7 @@ export default class App extends Component<PropsType> {
           <View>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => { this.transition('slide'); }}
+              onPress={() => { this.transition(Scenes.Slide); }}
             >
               <Text>
                 スライド
