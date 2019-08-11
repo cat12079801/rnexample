@@ -10,15 +10,12 @@ import React, {
 import {
   Dimensions,
   Text,
-  TouchableOpacity,
   ScrollView,
   StyleSheet,
   View,
 } from 'react-native';
 
-import Scenes from 'rnexample/src/Scenes';
-
-const dimensions  = Dimensions.get('window');
+const dimensions = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -28,8 +25,8 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     alignItems: 'center',
-    justifyContent: 'center',
     height: dimensions.height,
+    justifyContent: 'center',
     width: dimensions.width,
   },
   scrollHorizontal: {
@@ -39,7 +36,7 @@ const styles = StyleSheet.create({
 });
 
 type PropsType = {
-  navigation: Object,
+  // navigation: Object,
 };
 
 const tmpmd = `# タイトル
@@ -81,13 +78,12 @@ export default class Slide extends Component<PropsType> {
         y = 0;
         pages.push([[]]);
       } else if (/^## /.test(line)) {
-        x++;
+        x += 1;
         y = 0;
         pages.push([[]]);
       } else if (/^### /.test(line)) {
-        y++;
+        y += 1;
         pages[x].push([]);
-      } else {
       }
       const pushLine = line.replace(/^#+ /, '');
       pages[x][y].push(pushLine);
