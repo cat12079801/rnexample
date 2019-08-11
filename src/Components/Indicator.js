@@ -2,6 +2,7 @@
  * @format
  * @flow
  */
+/* eslint-disable react-native/sort-styles */
 
 import React, {
   Component,
@@ -13,10 +14,8 @@ import {
 } from 'react-native';
 
 const color = {
-  emeraldGreen: '#92f0d7',
   active: '#92f0d7',
-  inactive: '#c9f2e7',
-  white: 'white',
+  inactive: '#c7d1ce',
 };
 
 const styles = StyleSheet.create({
