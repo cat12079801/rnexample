@@ -25,12 +25,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   contentBody: {
-    flex: 8,
+    flex: 4,
     justifyContent: 'center',
   },
   contentTitle: {
     flex: 1,
     justifyContent: 'center',
+  },
+  contentTitleText: {
+    fontSize: 32,
   },
   scrollContent: {
     alignItems: 'center',
@@ -85,7 +88,7 @@ export default class Slide extends Component<PropsType, StateType> {
   }
 
   componentDidMount() {
-    const lines = tmpmd.split(/\n/g);
+    const lines = tmpmd.split(/\n/g).filter((x) => { return x !== ''; });
     const pages = [];
     let x = 0;
     let y = 0;
@@ -119,7 +122,7 @@ export default class Slide extends Component<PropsType, StateType> {
             style={styles.scrollContent}
           >
             <View style={styles.contentTitle}>
-              <Text>
+              <Text style={styles.contentTitleText}>
                 {contentTitle}
               </Text>
             </View>
