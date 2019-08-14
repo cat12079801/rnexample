@@ -11,6 +11,7 @@ import {
   Dimensions,
   Image,
   Text,
+  TouchableWithoutFeedback,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -220,9 +221,15 @@ export default class Slide extends Component<PropsType, StateType> {
     return (
       <Fragment>
         <StatusBar hidden={true} />
-        <View style={styles.container}>
-          {this.state.scrollContent}
-        </View>
+        <TouchableWithoutFeedback
+          onLongPress={() => {
+            this.props.navigation.goBack();
+          }}
+        >
+          <View style={styles.container}>
+            {this.state.scrollContent}
+          </View>
+        </TouchableWithoutFeedback>
       </Fragment>
     );
   }

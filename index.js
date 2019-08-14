@@ -25,6 +25,7 @@ const mainStackNavigator = createStackNavigator({
   Slide: {
     screen: Slide,
     navigationOptions: {
+      gesturesEnabled: false,
       header: null,
     },
   },
