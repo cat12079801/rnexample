@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
 });
 
 type PropsType = {
-  // navigation: Object,
+  navigation: Object,
 };
 type StateType = {
   scrollContent: Object,
@@ -84,11 +84,15 @@ export default class Slide extends Component<PropsType, StateType> {
 
   componentDidMount() {
     axios({
-      url: 'https://gist.githubusercontent.com/cat12079801/08bcd5a445499a1df88f138c397b4240/raw/714ac31ada409bea550bb8ab51cb8384d5a5bb6c/presentation-2019-08-17.md',
+      url: this.props.navigation.state.params.url,
       method: 'GET',
     })
       .then((res) => {
         this.parseMarkdown(res.data);
+      })
+      .catch(() => {
+        // eslint-disable-next-line no-alert
+        alert('何かがおかしいです');
       });
   }
 
