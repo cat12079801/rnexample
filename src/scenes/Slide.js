@@ -16,6 +16,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import axios from 'axios';
 
 import Indicator from 'rnexample/src/Components/Indicator';
 
@@ -73,34 +74,6 @@ type StateType = {
   scrollContent: Object,
 };
 
-const tmpmd = `# タイトル
-
-2019/08/11
-中村槙吾
-
-## お品書き
-
-1. あいうおおおお
-2. xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-3. ほ
-4. ほげほげ4
-
-こんな感じで箇条書きもできます
-
-## ほげほげ1
-
-![200](http://i.imgur.com/Jjwsc.jpg)
-にゃーん
-
-### 縦スワイプした
-
-こうなる
-
-### もう一つ縦スワイプ
-
-こうなってくれ
-`;
-
 export default class Slide extends Component<PropsType, StateType> {
   constructor(props: PropsType) {
     super(props);
@@ -110,7 +83,17 @@ export default class Slide extends Component<PropsType, StateType> {
   }
 
   componentDidMount() {
-    const lines = tmpmd.split(/\n/g);
+    axios({
+      url: 'https://gist.githubusercontent.com/cat12079801/08bcd5a445499a1df88f138c397b4240/raw/714ac31ada409bea550bb8ab51cb8384d5a5bb6c/presentation-2019-08-17.md',
+      method: 'GET',
+    })
+      .then((res) => {
+        this.parseMarkdown(res.data);
+      });
+  }
+
+  parseMarkdown = (markdown: string) => {
+    const lines = markdown.split(/\n/g);
     const pages = [];
     let x = 0;
     let y = 0;
