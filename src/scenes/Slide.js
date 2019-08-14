@@ -169,25 +169,31 @@ export default class Slide extends Component<PropsType, StateType> {
           }
         });
         vContent.push(
-          <View
+          <TouchableWithoutFeedback
             key={page[0]}
-            style={styles.scrollContent}
+            onLongPress={() => {
+              this.props.navigation.goBack();
+            }}
           >
-            <View style={styles.contentTitle}>
-              <Text style={styles.contentTitleText}>
-                {contentTitle}
-              </Text>
+            <View
+              style={styles.scrollContent}
+            >
+              <View style={styles.contentTitle}>
+                <Text style={styles.contentTitleText}>
+                  {contentTitle}
+                </Text>
+              </View>
+              <View style={styles.contentBody}>
+                {contentBody}
+              </View>
+              <Indicator
+                activeTop={iy !== 0}
+                activeLeft={ix !== 0}
+                activeRight={ix !== x}
+                activeBottom={iy !== vPages.length - 1}
+              />
             </View>
-            <View style={styles.contentBody}>
-              {contentBody}
-            </View>
-            <Indicator
-              activeTop={iy !== 0}
-              activeLeft={ix !== 0}
-              activeRight={ix !== x}
-              activeBottom={iy !== vPages.length - 1}
-            />
-          </View>,
+          </TouchableWithoutFeedback>,
         );
       });
       hContent.push(
@@ -221,15 +227,9 @@ export default class Slide extends Component<PropsType, StateType> {
     return (
       <Fragment>
         <StatusBar hidden={true} />
-        <TouchableWithoutFeedback
-          onLongPress={() => {
-            this.props.navigation.goBack();
-          }}
-        >
-          <View style={styles.container}>
-            {this.state.scrollContent}
-          </View>
-        </TouchableWithoutFeedback>
+        <View style={styles.container}>
+          {this.state.scrollContent}
+        </View>
       </Fragment>
     );
   }
