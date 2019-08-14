@@ -68,6 +68,11 @@ export default class SlidePre extends Component<PropsType, StateType> {
           <TextInput
             style={styles.textInput}
             value={this.state.url}
+            onChangeText={(text) => {
+              this.setState({
+                url: text,
+              });
+            }}
             placeholder="url"
           />
           <TouchableOpacity
