@@ -45,6 +45,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'left',
   },
+  contentBodyTextListSecond: {
+    fontSize: 18,
+    paddingLeft: 28,
+    textAlign: 'left',
+  },
   contentBodyTextNormal: {
     fontSize: 24,
     textAlign: 'center',
@@ -153,6 +158,15 @@ export default class Slide extends Component<PropsType, StateType> {
               <Text
                 key={key}
                 style={styles.contentBodyTextList}
+              >
+                {line}
+              </Text>,
+            );
+          } else if (/^ {2}(\d+\. |- )/.test(line)) {
+            contentBody.push(
+              <Text
+                key={key}
+                style={styles.contentBodyTextListSecond}
               >
                 {line}
               </Text>,
