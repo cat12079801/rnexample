@@ -8,9 +8,11 @@ import React, {
   Fragment,
 } from 'react';
 import {
+  Keyboard,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   StyleSheet,
   View,
 } from 'react-native';
@@ -63,7 +65,9 @@ export default class SlidePre extends Component<PropsType, StateType> {
 
   render(): React.DOM {
     return (
-      <Fragment>
+      <TouchableWithoutFeedback
+        onPress={Keyboard.dismiss}
+      >
         <View style={styles.container}>
           <TextInput
             style={styles.textInput}
@@ -84,7 +88,7 @@ export default class SlidePre extends Component<PropsType, StateType> {
             </Text>
           </TouchableOpacity>
         </View>
-      </Fragment>
+      </TouchableWithoutFeedback>
     );
   }
 }
