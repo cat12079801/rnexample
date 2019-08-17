@@ -62,6 +62,7 @@ rules: {
     },
   ],
   'react-native/no-color-literals': 'off',
+  'react-native/no-inline-styles': 'off',
   'react-native/no-unused-styles': 'error',
   'react-native/sort-styles': [
     'error',
