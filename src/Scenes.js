@@ -13,4 +13,8 @@ export default class Scenes {
   static get SlidePre(): string {
     return 'SlidePre';
   }
+
+  static get InputSample(): string {
+    return 'InputSample';
+  }
 }

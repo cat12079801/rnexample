@@ -10,6 +10,7 @@ import {
 } from 'react-navigation';
 
 import App from './src/scenes/App';
+import InputSample from './src/scenes/InputSample';
 import Slide from './src/scenes/Slide';
 import SlidePre from './src/scenes/SlidePre';
 import { name as appName } from './app.json';
@@ -20,6 +21,12 @@ const mainStackNavigator = createStackNavigator({
     navigationOptions: {
       gesturesEnabled: false,
       header: null,
+    },
+  },
+  InputSample: {
+    screen: InputSample,
+    navigationOptions: {
+      title: '入力画面サンプル',
     },
   },
   Slide: {
