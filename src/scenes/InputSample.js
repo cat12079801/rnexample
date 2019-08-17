@@ -8,27 +8,13 @@ import React, {
   Fragment,
 } from 'react';
 import {
-  Text,
-  TouchableOpacity,
   StyleSheet,
   View,
 } from 'react-native';
 
-import Scenes from 'rnexample/src/Scenes';
-
-const color = {
-  button: '#92f0d7',
-};
+import InputBox from 'rnexample/src/Components/InputBox';
 
 const styles = StyleSheet.create({
-  button: {
-    alignItems: 'center',
-    backgroundColor: color.button,
-    borderRadius: 25,
-    height: 50,
-    justifyContent: 'center',
-    width: 150,
-  },
   container: {
     alignItems: 'center',
     flex: 1,
@@ -52,28 +38,12 @@ export default class InputSample extends Component<PropsType> {
     return (
       <Fragment>
         <View style={styles.container}>
-          <View>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => { this.transition(Scenes.SlidePre); }}
-            >
-              <Text>
-                にゃーん
-              </Text>
-            </TouchableOpacity>
+          <InputBox />
 
-            <View style={styles.height20}>
-            </View>
-
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => { this.transition(Scenes.SlidePre); }}
-            >
-              <Text>
-                入力画面
-              </Text>
-            </TouchableOpacity>
+          <View style={styles.height20}>
           </View>
+
+          <InputBox />
         </View>
       </Fragment>
     );
