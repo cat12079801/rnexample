@@ -69,6 +69,9 @@ export default class InputSample extends Component<PropsType, StateType> {
             title="メールアドレス"
             inputText={this.state.mailAddress}
             updateState={(v) => { this.setState({ mailAddress: v }); }}
+            validateFunction={(v) => {
+              return /^.+@.+\..+$/.test(v);
+            }}
           />
 
           <View style={styles.height20}>
@@ -78,6 +81,9 @@ export default class InputSample extends Component<PropsType, StateType> {
             title="携帯電話番号"
             inputText={this.state.phoneNumber}
             updateState={(v) => { this.setState({ phoneNumber: v }); }}
+            validateFunction={(v) => {
+              return /^0[789]0\d{8}$/.test(v);
+            }}
           />
 
           <View style={styles.height20}>

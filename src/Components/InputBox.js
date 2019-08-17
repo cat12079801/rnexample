@@ -30,11 +30,25 @@ type PropsType = {
   inputText: string,
   placeholder?: string,
   updateState: Function,
+  validateFunction?: Function,
+};
+type StateType = {
+  isValid: boolean,
 };
 
-export default class InputBox extends Component<PropsType> {
+export default class InputBox extends Component<PropsType, StateType> {
   static defaultProps = {
     placeholder: '',
+    validateFunction: (v: ?string) => { return true; }, // eslint-disable-line no-unused-vars
+  }
+
+  validator = this.props.validateFunction || InputBox.defaultProps.validateFunction;
+
+  constructor(props: PropsType) {
+    super(props);
+    this.state = {
+      isValid: true,
+    };
   }
 
   render(): React.DOM {
@@ -44,10 +58,18 @@ export default class InputBox extends Component<PropsType> {
           {this.props.title}
         </Text>
         <TextInput
-          style={styles.textInput}
+          style={[
+            styles.textInput,
+            this.state.isValid ? {} : {
+              borderColor: 'red',
+            },
+          ]}
           value={this.props.inputText}
           onChangeText={(text) => {
             this.props.updateState(text);
+            this.setState({
+              isValid: text === '' || this.validator(text),
+            });
           }}
           placeholder={this.props.placeholder}
         />
