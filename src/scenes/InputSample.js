@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
+    paddingHorizontal: 50,
   },
   height20: {
     height: 20,
@@ -28,8 +29,20 @@ const styles = StyleSheet.create({
 type PropsType = {
   navigation: Object,
 };
+type StateType = {
+  mailAddress: string,
+  phoneNumber: string,
+};
 
-export default class InputSample extends Component<PropsType> {
+export default class InputSample extends Component<PropsType, StateType> {
+  constructor(props: PropsType) {
+    super(props);
+    this.state = {
+      mailAddress: '',
+      phoneNumber: '',
+    };
+  }
+
   transition = (destination: string) => {
     this.props.navigation.navigate(destination);
   }
@@ -38,12 +51,20 @@ export default class InputSample extends Component<PropsType> {
     return (
       <Fragment>
         <View style={styles.container}>
-          <InputBox />
+          <InputBox
+            title="メールアドレス"
+            inputText={this.state.mailAddress}
+            updateState={(v) => { this.setState({ mailAddress: v }); }}
+          />
 
           <View style={styles.height20}>
           </View>
 
-          <InputBox />
+          <InputBox
+            title="携帯電話番号"
+            inputText={this.state.phoneNumber}
+            updateState={(v) => { this.setState({ phoneNumber: v }); }}
+          />
         </View>
       </Fragment>
     );
