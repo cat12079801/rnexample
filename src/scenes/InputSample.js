@@ -100,7 +100,7 @@ export default class InputSample extends Component<PropsType, StateType> {
             }}
           >
             <Text>
-              GO
+              show inputs
             </Text>
           </TouchableOpacity>
         </View>

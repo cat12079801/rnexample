@@ -42,6 +42,7 @@ export default class InputBox extends Component<PropsType, StateType> {
     validateFunction: (v: ?string) => { return true; }, // eslint-disable-line no-unused-vars
   }
 
+  // flow が undefined function の実行を抑制してくることの回避
   validator = this.props.validateFunction || InputBox.defaultProps.validateFunction;
 
   constructor(props: PropsType) {
