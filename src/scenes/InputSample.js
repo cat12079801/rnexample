@@ -79,6 +79,7 @@ export default class InputSample extends Component<PropsType, StateType> {
 
           <InputBox
             title="携帯電話番号"
+            errorMessage="入力に誤りがあります"
             placeholder="phone number"
             inputText={this.state.phoneNumber}
             updateState={(v) => { this.setState({ phoneNumber: v }); }}

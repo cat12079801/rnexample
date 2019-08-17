@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
   },
+  errorMessage: {
+    color: 'red',
+  },
   textInput: {
     borderColor: 'black',
     borderWidth: 1,
@@ -27,6 +30,7 @@ const styles = StyleSheet.create({
 
 type PropsType = {
   title: string,
+  errorMessage?: string,
   inputText: string,
   placeholder?: string,
   updateState: Function,
@@ -34,6 +38,7 @@ type PropsType = {
   titleStyle?: Object,
   textInputStyle?: Object,
   textInputErrorStyle?: Object,
+  errorMessageStyle?: Object,
 };
 type StateType = {
   isValid: boolean,
@@ -41,11 +46,13 @@ type StateType = {
 
 export default class InputBox extends Component<PropsType, StateType> {
   static defaultProps = {
+    errorMessage: '',
     placeholder: '',
     validateFunction: (v: ?string) => { return true; }, // eslint-disable-line no-unused-vars
     titleStyle: {},
     textInputStyle: {},
     textInputErrorStyle: {},
+    errorMessageStyle: {},
   }
 
   // flow が undefined function の実行を抑制してくることの回避
@@ -82,6 +89,21 @@ export default class InputBox extends Component<PropsType, StateType> {
           }}
           placeholder={this.props.placeholder}
         />
+        {
+          this.state.isValid && this.props.errorMessage !== '' ? (
+            <Text>
+            </Text>
+          ) : (
+            <Text
+              style={[
+                styles.errorMessage,
+                this.props.errorMessageStyle,
+              ]}
+            >
+              {this.props.errorMessage}
+            </Text>
+          )
+        }
       </View>
     );
   }
