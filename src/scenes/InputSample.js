@@ -8,13 +8,25 @@ import React, {
   Fragment,
 } from 'react';
 import {
+  Keyboard,
   StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 
 import InputBox from 'rnexample/src/Components/InputBox';
 
 const styles = StyleSheet.create({
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#92f0d7',
+    borderRadius: 25,
+    height: 50,
+    justifyContent: 'center',
+    width: 150,
+  },
   container: {
     alignItems: 'center',
     flex: 1,
@@ -49,7 +61,9 @@ export default class InputSample extends Component<PropsType, StateType> {
 
   render(): React.DOM {
     return (
-      <Fragment>
+      <TouchableWithoutFeedback
+        onPress={Keyboard.dismiss}
+      >
         <View style={styles.container}>
           <InputBox
             title="メールアドレス"
@@ -65,8 +79,26 @@ export default class InputSample extends Component<PropsType, StateType> {
             inputText={this.state.phoneNumber}
             updateState={(v) => { this.setState({ phoneNumber: v }); }}
           />
+
+          <View style={styles.height20}>
+          </View>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              const states = [];
+              Object.keys(this.state).forEach((k) => {
+                states.push(`${k}: ${this.state[k]}`);
+              });
+              alert(states.join('\n')); // eslint-disable-line no-alert
+            }}
+          >
+            <Text>
+              GO
+            </Text>
+          </TouchableOpacity>
         </View>
-      </Fragment>
+      </TouchableWithoutFeedback>
     );
   }
 }
