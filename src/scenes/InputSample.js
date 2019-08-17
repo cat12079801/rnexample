@@ -79,10 +79,23 @@ export default class InputSample extends Component<PropsType, StateType> {
 
           <InputBox
             title="携帯電話番号"
+            placeholder="phone number"
             inputText={this.state.phoneNumber}
             updateState={(v) => { this.setState({ phoneNumber: v }); }}
             validateFunction={(v) => {
               return /^0[789]0\d{8}$/.test(v);
+            }}
+            titleStyle={{
+              textAlign: 'center',
+            }}
+            textInputStyle={{
+              borderColor: 'lightgray',
+              borderRadius: 30,
+              padding: 10,
+            }}
+            textInputErrorStyle={{
+              borderColor: 'orange',
+              borderStyle: 'dashed',
             }}
           />
 

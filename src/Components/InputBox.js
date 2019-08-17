@@ -31,6 +31,9 @@ type PropsType = {
   placeholder?: string,
   updateState: Function,
   validateFunction?: Function,
+  titleStyle?: Object,
+  textInputStyle?: Object,
+  textInputErrorStyle?: Object,
 };
 type StateType = {
   isValid: boolean,
@@ -40,6 +43,9 @@ export default class InputBox extends Component<PropsType, StateType> {
   static defaultProps = {
     placeholder: '',
     validateFunction: (v: ?string) => { return true; }, // eslint-disable-line no-unused-vars
+    titleStyle: {},
+    textInputStyle: {},
+    textInputErrorStyle: {},
   }
 
   // flow が undefined function の実行を抑制してくることの回避
@@ -55,14 +61,16 @@ export default class InputBox extends Component<PropsType, StateType> {
   render(): React.DOM {
     return (
       <View style={styles.container}>
-        <Text>
+        <Text style={this.props.titleStyle}>
           {this.props.title}
         </Text>
         <TextInput
           style={[
             styles.textInput,
+            this.props.textInputStyle,
             this.state.isValid ? {} : {
               borderColor: 'red',
+              ...this.props.textInputErrorStyle,
             },
           ]}
           value={this.props.inputText}
