@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   },
   contentBodyTextListSecond: {
     fontSize: 18,
+    paddingBottom: 5,
     paddingLeft: 28,
     textAlign: 'left',
   },
