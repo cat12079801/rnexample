@@ -100,6 +100,10 @@ export default class InputSample extends Component<PropsType, StateType> {
             }}
           />
 
+          {/*
+            TODO: 50文字以内の自由入力欄を作りたいなぁ…
+          */}
+
           <View style={styles.height20}>
           </View>
 
